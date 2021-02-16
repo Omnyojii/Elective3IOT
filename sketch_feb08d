@@ -1,0 +1,20 @@
+int ledPin = 7;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600); // Default communication rate of the Bluetooth module
+}
+void loop() {
+ if(Serial.available())  // Checks whether data is comming from the serial port
+ { 
+   char state = Serial.read(); // Reads the data from the serial port
+   if (state == 'b') {
+    Serial.println("LED:OFF");
+    digitalWrite(ledPin, LOW); // Turn LED OFF
+   }
+   else if (state == 'a') {
+    Serial.println("LED:ON");
+    digitalWrite(ledPin, HIGH);
+   } 
+ }
+}
